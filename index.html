@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
@@ -14,31 +15,56 @@
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 </head>
+
 <body>
     <div class="app-container">
         <!-- Dashboard View -->
         <div id="view-dashboard" class="view">
             <header>
-                <div class="total-balance-card glass">
-                    <p class="balance-label">Total Overtime Balance</p>
-                    <div id="total-balance" class="balance-value">0:00</div>
+                <div class="day-header glass">
+                    <span id="current-day-label">DAY : SATURDAY</span>
                 </div>
             </header>
 
-            <main class="timer-container">
-                <div id="current-project-display" class="active-project">No Project Selected</div>
-                <div id="timer-display" class="timer-display">00:00:00</div>
-                
-                <div class="controls">
-                    <button id="btn-start" class="btn-main">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+            <main class="log-container">
+                <div id="daily-log" class="log-list">
+                    <!-- Example Entry -->
+                    <!-- 
+                    <div class="log-entry glass project">
+                        <div class="entry-type">Project: App Design</div>
+                        <div class="entry-time">Start : 09:00</div>
+                        <div class="entry-time">End : 11:30</div>
+                    </div>
+                    -->
+                </div>
+
+                <div class="actions">
+                    <button id="btn-show-actions" class="btn-main pulsing">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
+                        </svg>
                     </button>
-                    <button id="btn-stop" class="btn-main hidden" style="background: var(--danger);">
-                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                    </button>
-                    <button id="btn-finish" class="btn-secondary">Finish Day</button>
+                    <p style="margin-top: 10px; color: var(--text-dim); font-size: 0.8rem;">Add Project or Break</p>
+                </div>
+
+                <div id="total-card" class="total-summary-card glass">
+                    <span class="total-label">Total :</span>
+                    <span id="total-balance" class="balance-value">0:00</span>
                 </div>
             </main>
+
+            <!-- Action Sheet (Hidden by default) -->
+            <div id="action-sheet" class="action-sheet hidden">
+                <div class="action-sheet-content glass">
+                    <h3>Track New Activity</h3>
+                    <div class="action-buttons">
+                        <button id="btn-action-project" class="btn-secondary">📁 Start Project</button>
+                        <button id="btn-action-break" class="btn-secondary">☕ Start Break</button>
+                        <button id="btn-action-cancel" class="btn-secondary"
+                            style="background: rgba(255,255,255,0.05);">Cancel</button>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <!-- Projects View -->
@@ -48,8 +74,10 @@
                 <!-- Projects injected here -->
             </div>
             <div style="margin-top: 20px;">
-                <input type="text" id="new-project-name" placeholder="New Project Name" class="btn-secondary" style="width: 100%; margin-bottom: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);">
-                <button id="btn-add-project" class="btn-secondary" style="width: 100%; background: var(--primary);">Add Project</button>
+                <input type="text" id="new-project-name" placeholder="New Project Name" class="btn-secondary"
+                    style="width: 100%; margin-bottom: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);">
+                <button id="btn-add-project" class="btn-secondary" style="width: 100%; background: var(--primary);">Add
+                    Project</button>
             </div>
         </div>
 
@@ -58,10 +86,12 @@
             <h2 class="section-title">Manual Balance Adjust</h2>
             <div class="glass" style="padding: 20px;">
                 <p class="balance-label">Current Balance (minutes)</p>
-                <input type="number" id="manual-balance" class="btn-secondary" style="width: 100%; margin-bottom: 20px; background: rgba(255,255,255,0.05);">
-                <button id="btn-save-settings" class="btn-secondary" style="width: 100%; background: var(--primary);">Update Balance</button>
+                <input type="number" id="manual-balance" class="btn-secondary"
+                    style="width: 100%; margin-bottom: 20px; background: rgba(255,255,255,0.05);">
+                <button id="btn-save-settings" class="btn-secondary"
+                    style="width: 100%; background: var(--primary);">Update Balance</button>
             </div>
-            
+
             <h2 class="section-title">Work Logic</h2>
             <div class="glass" style="padding: 20px; font-size: 0.875rem; color: var(--text-dim);">
                 <p>Mon - Thu: 8 hours</p>
@@ -97,4 +127,5 @@
         }
     </script>
 </body>
+
 </html>
