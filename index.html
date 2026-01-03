@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>TimeIO | Overtime Tracker</title>
+    <meta name="description" content="Effortlessly track your overuren and project hours with TimeIO.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Dashboard View -->
+        <div id="view-dashboard" class="view">
+            <header>
+                <div class="total-balance-card glass">
+                    <p class="balance-label">Total Overtime Balance</p>
+                    <div id="total-balance" class="balance-value">0:00</div>
+                </div>
+            </header>
+
+            <main class="timer-container">
+                <div id="current-project-display" class="active-project">No Project Selected</div>
+                <div id="timer-display" class="timer-display">00:00:00</div>
+                
+                <div class="controls">
+                    <button id="btn-start" class="btn-main">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    </button>
+                    <button id="btn-stop" class="btn-main hidden" style="background: var(--danger);">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                    </button>
+                    <button id="btn-finish" class="btn-secondary">Finish Day</button>
+                </div>
+            </main>
+        </div>
+
+        <!-- Projects View -->
+        <div id="view-projects" class="view hidden">
+            <h2 class="section-title">Your Projects</h2>
+            <div id="projects-list">
+                <!-- Projects injected here -->
+            </div>
+            <div style="margin-top: 20px;">
+                <input type="text" id="new-project-name" placeholder="New Project Name" class="btn-secondary" style="width: 100%; margin-bottom: 10px; background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border);">
+                <button id="btn-add-project" class="btn-secondary" style="width: 100%; background: var(--primary);">Add Project</button>
+            </div>
+        </div>
+
+        <!-- Settings View -->
+        <div id="view-settings" class="view hidden">
+            <h2 class="section-title">Manual Balance Adjust</h2>
+            <div class="glass" style="padding: 20px;">
+                <p class="balance-label">Current Balance (minutes)</p>
+                <input type="number" id="manual-balance" class="btn-secondary" style="width: 100%; margin-bottom: 20px; background: rgba(255,255,255,0.05);">
+                <button id="btn-save-settings" class="btn-secondary" style="width: 100%; background: var(--primary);">Update Balance</button>
+            </div>
+            
+            <h2 class="section-title">Work Logic</h2>
+            <div class="glass" style="padding: 20px; font-size: 0.875rem; color: var(--text-dim);">
+                <p>Mon - Thu: 8 hours</p>
+                <p>Fri: 6 hours</p>
+                <p>Fixed Break: 30 mins (deducts from total balance when day finishes)</p>
+            </div>
+        </div>
+
+        <!-- Navigation -->
+        <nav class="glass">
+            <a href="#" class="nav-item active" data-view="dashboard">
+                <span class="nav-icon">⏱️</span>
+                <span>Track</span>
+            </a>
+            <a href="#" class="nav-item" data-view="projects">
+                <span class="nav-icon">📁</span>
+                <span>Projects</span>
+            </a>
+            <a href="#" class="nav-item" data-view="settings">
+                <span class="nav-icon">⚙️</span>
+                <span>Settings</span>
+            </a>
+        </nav>
+    </div>
+
+    <script src="app.js"></script>
+    <script>
+        // Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('sw.js')
+                .then(reg => console.log('SW Registered', reg))
+                .catch(err => console.log('SW Failed', err));
+        }
+    </script>
+</body>
+</html>
