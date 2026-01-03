@@ -1,4 +1,4 @@
-const CACHE_NAME = 'timeio-v2';
+const CACHE_NAME = 'timeio-v3';
 const ASSETS = [
     './',
     './index.html',
