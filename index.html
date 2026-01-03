@@ -21,21 +21,15 @@
         <!-- Dashboard View -->
         <div id="view-dashboard" class="view">
             <header>
-                <div class="day-header glass">
-                    <span id="current-day-label">DAY : SATURDAY</span>
-                </div>
+                <button id="btn-date-picker" class="day-header glass"
+                    style="width: 100%; text-align: left; border: none; cursor: pointer;">
+                    <span id="current-day-label">SATURDAY - 03/01/2026</span>
+                </button>
             </header>
 
             <main class="log-container">
                 <div id="daily-log" class="log-list">
-                    <!-- Example Entry -->
-                    <!-- 
-                    <div class="log-entry glass project">
-                        <div class="entry-type">Project: App Design</div>
-                        <div class="entry-time">Start : 09:00</div>
-                        <div class="entry-time">End : 11:30</div>
-                    </div>
-                    -->
+                    <!-- Standard Log Entries will be rendered here -->
                 </div>
 
                 <div class="actions">
@@ -46,12 +40,12 @@
                     </button>
                     <p style="margin-top: 10px; color: var(--text-dim); font-size: 0.8rem;">Add Project or Break</p>
                 </div>
-
-                <div id="total-card" class="total-summary-card glass">
-                    <span class="total-label">Total :</span>
-                    <span id="total-balance" class="balance-value">0:00</span>
-                </div>
             </main>
+
+            <div id="total-card" class="total-summary-card glass">
+                <span class="total-label">Total :</span>
+                <span id="total-balance" class="balance-value">0:00</span>
+            </div>
 
             <!-- Action Sheet (Hidden by default) -->
             <div id="action-sheet" class="action-sheet hidden">
